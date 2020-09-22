@@ -9,8 +9,11 @@
 #include "life.h"
 
 int main(int argc, char *argv[]) {
+	
+	//FILE *textPtr; // life.txt file pointer
+
 	int board[XSIZE][YSIZE];
-	int rounds = DEFAULTROUNDS;
+	//int rounds = DEFAULTROUNDS;  //should be loaded by file
 
 	initBoard(board);
 	board[5][5] = ALIVE;
@@ -18,6 +21,7 @@ int main(int argc, char *argv[]) {
 	board[5][7] = ALIVE;
 	board[6][6] = ALIVE;
 
+	//if(textPtr = fopen("life.txt"))
 	printf("Playing %d rounds.\n\n", rounds);
 	for (int i=0; i<rounds; i++) {
 		printf("Round: %d\n", i+1);
