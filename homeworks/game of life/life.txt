@@ -1,7 +1,7 @@
 //should load the intial state of the game
 
 
-//load the number of rounds to play
-
+#number of rounds to play
+ROUNDS = 15
 
 //could load the grid size

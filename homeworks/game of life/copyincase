@@ -10,23 +10,18 @@
 
 int main(int argc, char *argv[]) {
 	
-	FILE *textPtr; // life.txt file pointer
+	//FILE *textPtr; // life.txt file pointer
 
 	int board[XSIZE][YSIZE];
 	//int rounds = DEFAULTROUNDS;  //should be loaded by file
 
-	//initBoard(board);
-	//board[5][5] = ALIVE;
-	//board[5][6] = ALIVE;
-	//board[5][7] = ALIVE;
-	//board[6][6] = ALIVE;
+	initBoard(board);
+	board[5][5] = ALIVE;
+	board[5][6] = ALIVE;
+	board[5][7] = ALIVE;
+	board[6][6] = ALIVE;
 
-	//opens text file, exits if it cant open
-	if((textPtr = fopen("life.txt", "w")) == NULL)
-	{
-		puts("File could not be opened");
-	}
-
+	//if(textPtr = fopen("life.txt"))
 	printf("Playing %d rounds.\n\n", rounds);
 	for (int i=0; i<rounds; i++) {
 		printf("Round: %d\n", i+1);
