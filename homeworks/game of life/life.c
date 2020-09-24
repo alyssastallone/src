@@ -6,26 +6,45 @@
  */
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "life.h"
 
 int main(int argc, char *argv[]) {
 	
-	FILE *textPtr; // life.txt file pointer
+	FILE *textPtr; // liferounds.txt file pointer
+	FILE *statePtr; //lifeinitial.txt file pointer
 
-	int board[XSIZE][YSIZE];
-	//int rounds = DEFAULTROUNDS;  //should be loaded by file
+	int board[XSIZE][YSIZE];  //should be initialized by file
+	int rounds;  //should be loaded by file
 
-	//initBoard(board);
+	initBoard(board);
+	//live cells are loaded in with file dont need to specify them here
 	//board[5][5] = ALIVE;
 	//board[5][6] = ALIVE;
 	//board[5][7] = ALIVE;
 	//board[6][6] = ALIVE;
 
-	//opens text file, exits if it cant open
-	if((textPtr = fopen("life.txt", "w")) == NULL)
+	//opens text file liferounds.txt, exits if it cant open
+	if((textPtr = fopen("liferounds.txt", "r")) == NULL)
 	{
 		puts("File could not be opened");
+
+		return 1;
 	}
+
+	//opens text file lifeinitial.txt, exits if can't open file
+	if((statePtr = fopen("lifeinitial.txt", "r")) == NULL)
+	{
+		puts("File could not be opened");
+
+		return 1;
+	}
+
+	//read the number of rounds from file
+	fscanf(textPtr, "%d", &rounds);
+	//read the initial state of the board from file
+	fscanf(statePtr, "%d", &board );
+
 
 	printf("Playing %d rounds.\n\n", rounds);
 	for (int i=0; i<rounds; i++) {
