@@ -8,42 +8,55 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "life.h"
+#define FILENAME "life.txt"
 
 int main(int argc, char *argv[]) {
 	
-	FILE *textPtr; // liferounds.txt file pointer
-	FILE *statePtr; //lifeinitial.txt file pointer
+	FILE *textPtr; // life.txt file pointer
 
-	int board[XSIZE][YSIZE];  //should be initialized by file
-	int rounds;  //should be loaded by file
-
-	initBoard(board);
-	//live cells are loaded in with file dont need to specify them here
-	//board[5][5] = ALIVE;
-	//board[5][6] = ALIVE;
-	//board[5][7] = ALIVE;
-	//board[6][6] = ALIVE;
-
-	//opens text file liferounds.txt, exits if it cant open
-	if((textPtr = fopen("liferounds.txt", "r")) == NULL)
+	int board[XSIZE][YSIZE];  
+	int rounds;  			  //should be loaded by file
+	//int numRows;
+	//int numCols;
+	int aCell1, aCell2, bCell1, bCell2;
+	int cCell1, cCell2, dCell1, dCell2;
+	
+	//opens text file life.txt, exits if it cant open
+	if((textPtr = fopen(FILENAME, "r")) == NULL)
 	{
 		puts("File could not be opened");
 
 		return 1;
 	}
 
-	//opens text file lifeinitial.txt, exits if can't open file
-	if((statePtr = fopen("lifeinitial.txt", "r")) == NULL)
-	{
-		puts("File could not be opened");
-
-		return 1;
-	}
-
-	//read the number of rounds from file
+	//read the number of rounds, and board size from file
 	fscanf(textPtr, "%d", &rounds);
-	//read the initial state of the board from file
-	fscanf(statePtr, "%d", &board );
+
+	//fscanf(textPtr, "%d %d", &numRows, &numCols);
+
+	//read in numbers for the first alive cell
+	fscanf(textPtr, "%d %d", &aCell1, &aCell2);
+	//read in numbers for next alive cell
+    fscanf(textPtr, "%d %d", &bCell1, &bCell2);
+	//read in numbers for next alive cell
+	fscanf(textPtr, "%d %d", &cCell1, &cCell2);
+	//read in numbers for next alive cell
+	fscanf(textPtr, "%d %d", &dCell1, &dCell2);
+	
+	//declare board as number of rows and number of columns
+    //int board[numRows][numCols];
+
+	//close the file when done with it 
+	fclose(textPtr);
+
+	//initialize the board
+	initBoard(board);
+
+    //initialize the board with the alive cells from the text file
+	board[aCell1][aCell2] = ALIVE;
+	board[bCell1][bCell2] = ALIVE;
+	board[cCell1][cCell2] = ALIVE;
+	board[dCell1][dCell2] = ALIVE;
 
 
 	printf("Playing %d rounds.\n\n", rounds);
@@ -51,7 +64,6 @@ int main(int argc, char *argv[]) {
 		printf("Round: %d\n", i+1);
 		printBoard(board);
 		playRound(board);
-
 		sleep(1);
 	}
 
@@ -61,7 +73,6 @@ int main(int argc, char *argv[]) {
 //initializes board to all dead cells by setting all spots = 0
 //	dead cells = 0;
 void initBoard(int vBoard[][YSIZE]) {
-    /* write this function */
 	int x, y;          //for loops variables
 	for (x=0; x < XSIZE; x++)
 		{
@@ -75,7 +86,7 @@ void playRound(int vBoard[][YSIZE]) {
 
 	int tmpBoard[XSIZE][YSIZE];
 	
-	int x, y;		//for loop variables
+	int x, y;		    //for loop variables
 	int numNeighbors;	// for the # of neighbors to decide what happens to cells
 
 	initBoard(tmpBoard);
@@ -165,7 +176,7 @@ int neighbors(int vBoard[][YSIZE], int x, int y) {
 
 void printBoard(int vBoard[XSIZE][YSIZE]) {
 	int x, y; 		//for loop variables
-	for (y = 0; y< YSIZE; y++)
+	for (y = 0; y < YSIZE; y++)
 	{
 		for(x = 0; x < XSIZE; x++)
 		{

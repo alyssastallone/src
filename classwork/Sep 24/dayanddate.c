@@ -10,5 +10,11 @@ int main(void)
     strcpy(buf, "Thursday September 24 2020");
     sscanf(buf, "%s %s %d %d", weekday, month, &day, &year);
 
-    
+    strcpy( buf, "Thursday September 24 2020");
+    sscanf(buf, "%s %s %d,", weekday, month, &day, &year);
+
+    printf("%s %d, %d = %s\n", month, day, year, weekday);
+
+    return 0;
+
 }
