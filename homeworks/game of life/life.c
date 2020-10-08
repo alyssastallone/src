@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	//int numRows;
 	//int numCols;
 	int aCell1, aCell2, bCell1, bCell2;
-	int cCell1, cCell2, dCell1, dCell2;
+	int cCell1, cCell2, dCell1, dCell2, eCell1, eCell2;
 	
 	//opens text file life.txt, exits if it cant open
 	if((textPtr = fopen(FILENAME, "r")) == NULL)
@@ -29,8 +29,9 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	//read the number of rounds, and board size from file
+	//read the number of rounds from file
 	fscanf(textPtr, "%d", &rounds);
+
 
 	//fscanf(textPtr, "%d %d", &numRows, &numCols);
 
@@ -42,6 +43,8 @@ int main(int argc, char *argv[]) {
 	fscanf(textPtr, "%d %d", &cCell1, &cCell2);
 	//read in numbers for next alive cell
 	fscanf(textPtr, "%d %d", &dCell1, &dCell2);
+	//read in numbers for next alive cell
+	fscanf(textPtr, "%d %d", &eCell1, &eCell2);
 	
 	//declare board as number of rows and number of columns
     //int board[numRows][numCols];
@@ -57,6 +60,7 @@ int main(int argc, char *argv[]) {
 	board[bCell1][bCell2] = ALIVE;
 	board[cCell1][cCell2] = ALIVE;
 	board[dCell1][dCell2] = ALIVE;
+	board[eCell1][eCell2] = ALIVE;
 
 
 	printf("Playing %d rounds.\n\n", rounds);
