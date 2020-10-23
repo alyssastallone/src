@@ -5,35 +5,28 @@
 
     Person::Person(std::string name, int id)
     {
-        name = "";
+        name = name;
         count++;
         id = count;
     }
     
     int Person::getId() 
     {
-        
+        return id;
     }
     
     std::string Person::getName() 
     {
-
+        return name;
     }
         
-    void Person::setName(std::string name)
-    {
-        name = name;
-    }    
-
-    void Person::setId(int id)
-    {
-        id = id;
-    }
 
     //getData method
-    void Person::getData() 
+    std::string Person::getData() 
     {
-        
+        return getName();
+        std::string idString = std::to_string(getId()); 
+        return idString;
     }
 
     Professor::Professor(std::string name, int id, int publications, int rank)
@@ -47,27 +40,23 @@
 
     int Professor::getPublications()
     {
-
+        return publications;
     }
 
     int Professor::getRank()
     {
-
+        return rank;
     }
 
-    void Professor::setPublications(int publications)
-    {   
-        publications = publications;
-    }
-
-    void Professor::setRank(int rank)
+    std::string Professor::getData()
     {
-        rank = rank;
-    }
-
-    void Professor::getData()
-    {
-
+        return getName();
+        std::string idString = std::to_string(getId()); 
+        return idString;
+        std::string pubString = std::to_string(getPublications());
+        return pubString;
+        std::string rankString = std::to_string(getRank());
+        return rankString;
     }
 
     Student::Student(std::string name, int id, std::string major, std::string minor)
@@ -79,6 +68,28 @@
         minor = minor;
 
     }
+
+    std::string Student::getMajor()
+    {
+        return major;
+    }
+
+    std::string Student::getMinor()
+    {
+        return minor;
+    }
+
+    std::string Student::getData()
+    {
+        return getName();
+        std::string idString = std::to_string(getId()); 
+        return idString;
+        return getMajor();
+        return getMinor();
+
+    }
+
+    
 
 
 
