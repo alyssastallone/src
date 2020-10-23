@@ -3,11 +3,6 @@
 #include "assn9.h"
 
 
-    Person::Person()
-    {
-
-    }
-    
     Person::Person(std::string name, int id)
     {
         name = "";
@@ -72,6 +67,16 @@
 
     void Professor::getData()
     {
+
+    }
+
+    Student::Student(std::string name, int id, std::string major, std::string minor)
+    {
+        name = name;
+        count++;
+        id = count;
+        major = major;
+        minor = minor;
 
     }
 
